@@ -1,0 +1,37 @@
+name: Deploy to server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Trigger manual workflow runs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+           if [ -z "$SSH_AUTH_SOCK" ]; then
+            eval "$(ssh-agent -s)"
+            ssh-add ${{ secrets.PRIVATE_KEY }}
+           fi
+           cd /root/vapingecommerce
+           git pull origin main
+           git checkout main
+           git reset --hard origin/main
+           git pull origin main
+           git status
+           pnpm install
+           pnpm run build
+           pm2 startOrRestart pm2.config.js
