@@ -19,6 +19,7 @@ model User {
   name          String? @db.VarChar(100)
   lastname      String? @db.VarChar(100)
   email         String @db.VarChar(256) @unique
+  password      String
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now())
