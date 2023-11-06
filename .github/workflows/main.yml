@@ -27,12 +27,39 @@ jobs:
             ssh-add ${{ secrets.PRIVATE_KEY }}
            fi
            cd /root/vapingecommerce
-           git pull origin main
-           git checkout main
-           git reset --hard origin/main
-           git pull origin main
-           git status
-           pnpm install
-           pnpm run build
-           pm2 startOrRestart pm2.config.js
-           pm2 save
+           if ! git pull origin main; then
+            echo "Error executing git pull. Workflow stopped."
+            exit 1
+           fi
+           if ! git checkout main; then
+            echo "Error executing checkout on main. Workflow stopped"
+            exit 1
+           fi
+           if ! git reset --hard origin/main; then
+            echo "Error executing git reset. Workflow stopped."
+            exit 1
+           fi
+           if ! git status; then
+            echo "Error executing git status. Workflow stopped."
+            exit 1
+           fi
+           if ! pnpm install; then
+            echo "Error trying to install dependencies. Workflow stopped."
+            exit 1
+           fi
+           if ! pnpm prisma generate; then
+            echo "Error trying to generate prisma. Workflow stopped."
+            exit 1
+           fi
+           if ! pnpm run build; then
+            echo "Error building application. Workflow stopped."
+            exit 1
+           fi
+           if ! pm2 startOrRestart pm2.config.js; then
+            echo "Error restarting pm2 instance. Workflow stopped."
+            exit 1
+           fi
+           if ! pm2 save; then
+            echo "Error trying to save pm2 instances. Workflow stopped."
+            exit 1
+           fi
