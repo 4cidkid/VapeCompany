@@ -37,7 +37,14 @@ export async function POST(request: Request): Promise<Response> {
         })
 
         return Response.json({
-            user: user
+            user: {
+                id: user.id,
+                username: user.email,
+                name: user.name,
+                lastname: user.lastname,
+                points: user.points,
+                image: user.image
+            }
         }, {
             status: httpStatus.http_status_created
         })
