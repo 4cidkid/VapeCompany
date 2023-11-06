@@ -32,6 +32,19 @@ model User {
   Wishlist Wishlist?
   Cart Cart?
   Order Order[]
+  Address Address[]
+}
+model Address{
+  id Int @id @default(autoincrement())
+  street String @db.VarChar(300)
+  streetTwo String? @db.VarChar(200)
+  zip String @db.VarChar(50)
+  city String @db.VarChar(50)
+  state String @db.VarChar(50)
+  country String @db.VarChar(50)
+  userId String
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
 }
 model Account {
   id                 String    @id @default(cuid())
