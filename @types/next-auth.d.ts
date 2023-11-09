@@ -11,7 +11,8 @@ declare module "next-auth"{
         lastname: string,
         email: string,
         points: number,
-        image: string
+        image: string,
+        role: string
     }
     interface User{
         name: string,
@@ -19,13 +20,9 @@ declare module "next-auth"{
         email: string,
         points: number,
         image: string
+        role: string
     }
     interface Session{
-        user:User & {
-            email: string,
-            name: string,
-            lastname: string
-            points: number
-        } & DefaultSession["user"]
+        user:User & DefaultSession["user"]
     }
 }
