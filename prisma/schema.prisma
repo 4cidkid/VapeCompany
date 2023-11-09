@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,68 +6,67 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-enum Role {
-  superadmin
-  admin
-  user
-}
+
 model User {
   id            String    @id @default(cuid())
-  name          String? @db.VarChar(100)
-  lastname      String? @db.VarChar(100)
-  email         String @db.VarChar(256) @unique
-  password      String
+  name          String?   @db.VarChar(100)
+  lastname      String?   @db.VarChar(100)
+  email         String    @unique @db.VarChar(256)
+  password      String?
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  role Role @default(user)
-  points Int @default(0)
+  role          Role      @default(user)
+  points        Int       @default(0)
   accounts      Account[]
+  Address       Address[]
+  Cart          Cart?
+  Order         Order[]
+  Review        Review[]
   sessions      Session[]
-  Review Review[]
-  Wishlist Wishlist?
-  Cart Cart?
-  Order Order[]
-  Address Address[]
+  Wishlist      Wishlist?
 }
-model Address{
-  id Int @id @default(autoincrement())
-  street String @db.VarChar(300)
+
+model Address {
+  id        Int     @id @default(autoincrement())
+  street    String  @db.VarChar(300)
   streetTwo String? @db.VarChar(200)
-  zip String @db.VarChar(50)
-  city String @db.VarChar(50)
-  state String @db.VarChar(50)
-  country String @db.VarChar(50)
-  userId String
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  zip       String  @db.VarChar(50)
+  city      String  @db.VarChar(50)
+  state     String  @db.VarChar(50)
+  country   String  @db.VarChar(50)
+  userId    String
+  User      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
 model Account {
-  id                 String    @id @default(cuid())
-  userId             String
-  providerType       String
-  providerId         String
-  providerAccountId  String
-  refreshToken       String?
-  accessToken        String?
-  accessTokenExpires DateTime?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  user               User      @relation(fields: [userId], references: [id])
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([providerId, providerAccountId])
+  @@unique([provider, providerAccountId])
 }
+
 model Session {
   id           String   @id @default(cuid())
+  sessionToken String   @unique
   userId       String
   expires      DateTime
-  sessionToken String   @unique
-  accessToken  String   @unique
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  user         User     @relation(fields: [userId], references: [id])
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
 model VerificationRequest {
   id         String   @id @default(cuid())
   identifier String
@@ -82,108 +78,153 @@ model VerificationRequest {
   @@unique([identifier, token])
 }
 
-model Category{
-  id Int @id @default(autoincrement())
-  name String @unique @db.VarChar(100)
-  description String @db.VarChar(100)
-  image String?
+model Category {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique @db.VarChar(100)
+  description String        @db.VarChar(100)
+  image       String?
   Subcategory Subcategory[]
 }
-model Subcategory{
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(100)
-  description String @db.VarChar(100)
-  image String?
-  categoryId Int
-  Category Category @relation(fields:[categoryId], references:[id], onDelete: Cascade)
-  Product Product[]
+
+model Subcategory {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(100)
+  description String    @db.VarChar(100)
+  image       String?
+  categoryId  Int
+  Category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  Product     Product[] @relation("ProductToSubcategory")
 }
-model Product{
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(200)
-  description String @db.VarChar(500)
-  image String?
-  SubCategory Subcategory[]
-  new Boolean @default(false)
-  Product_variation Product_variation[]
+
+model Product {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(200)
+  description       String              @db.VarChar(500)
+  image             String?
+  new               Boolean             @default(false)
   Product_attribute Product_attribute[]
+  Product_variation Product_variation[]
+  SubCategory       Subcategory[]       @relation("ProductToSubcategory")
 }
-model Variation{
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(150)
-  image String?
-  description String @db.VarChar(500)
+
+model Variation {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(150)
+  image             String?
+  description       String              @db.VarChar(500)
   Product_variation Product_variation[]
 }
-model Product_variation{
-  variationId Int 
-  productId Int
-  name String @db.VarChar(200)
-  image String?
-  price Float
-  Variation Variation @relation(fields:[variationId],references:[id],onDelete: Cascade)
-  Product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  Review Review[]
+
+model Product_variation {
+  variationId                Int
+  productId                  Int
+  name                       String                       @db.VarChar(200)
+  image                      String?
+  price                      Float
+  Cart_item                  Cart_item[]
+  Product                    Product                      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Variation                  Variation                    @relation(fields: [variationId], references: [id], onDelete: Cascade)
+  Review                     Review[]
   Wishlist_product_variation Wishlist_product_variation[]
-  Cart_item Cart_item[]
+
   @@id([variationId, productId])
 }
-model Attribute{
-   id Int @id @default(autoincrement())
-   name String @db.VarChar(120)
-   Product_attribute Product_attribute[]
-}
-model Product_attribute{
-  attributeId Int
-  productId Int
-  name String @db.VarChar(120)
-  Attribute Attribute @relation(fields: [attributeId], references:[id], onDelete: Cascade)
-  Product Product @relation(fields:[productId], references:[id],onDelete:Cascade)
-  @@id([attributeId,productId])
 
+model Attribute {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(120)
+  Product_attribute Product_attribute[]
 }
-model Review{
-  id Int @id @default(autoincrement())
-  content String @db.VarChar(1000)
-  rating Float
-  userId String
-  variationId Int
-  productId Int
-  User User @relation(fields:[userId],references:[id],onDelete: Cascade)
+
+model Product_attribute {
+  attributeId Int
+  productId   Int
+  name        String    @db.VarChar(120)
+  Attribute   Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  Product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([attributeId, productId])
+}
+
+model Review {
+  id               Int               @id @default(autoincrement())
+  content          String            @db.VarChar(1000)
+  rating           Float
+  userId           String
+  variationId      Int
+  productId        Int
+  User             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   productVariation Product_variation @relation(fields: [variationId, productId], references: [variationId, productId])
+
   @@unique([userId, variationId, productId])
 }
-model Wishlist{
-  id Int @id @default(autoincrement())
+
+model Wishlist {
+  id     Int    @id @default(autoincrement())
   userId String @unique
-  User User @relation(fields:[userId],references: [id],onDelete: Cascade)
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-model Wishlist_product_variation{
-  wishlistId Int
-  variationId Int
-  productId Int
+
+model Wishlist_product_variation {
+  wishlistId       Int
+  variationId      Int
+  productId        Int
   productVariation Product_variation @relation(fields: [variationId, productId], references: [variationId, productId])
-  @@id([wishlistId,variationId,productId])
+
+  @@id([wishlistId, variationId, productId])
 }
-model Cart{
-  id Int @id @default(autoincrement())
-  userId String @unique
-  updatedAt DateTime @updatedAt
-  User User @relation(fields:[userId], references: [id], onDelete: Cascade)
+
+model Cart {
+  id        Int         @id @default(autoincrement())
+  userId    String      @unique
+  updatedAt DateTime    @updatedAt
+  User      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   Cart_item Cart_item[]
-  Order Order?
+  Order     Order?
 }
-model Cart_item{
-  cartId Int
-  variationId Int
-  productId Int
+
+model Cart_item {
+  cartId           Int
+  variationId      Int
+  productId        Int
+  quantity         Int               @default(1)
+  Cart             Cart              @relation(fields: [cartId], references: [id], onDelete: Cascade)
   productVariation Product_variation @relation(fields: [variationId, productId], references: [variationId, productId])
-  quantity Int @default(1)
-  Cart Cart @relation(fields: [cartId], references: [id],onDelete: Cascade)
-  @@id([cartId,productId,variationId])
+
+  @@id([cartId, productId, variationId])
 }
-enum Order_status{
-  created 
+
+model Order {
+  id          String       @id
+  status      Order_status @default(created)
+  userId      String
+  cartId      Int          @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  Cart        Cart         @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  User        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Transaction Transaction?
+}
+
+model Transaction {
+  id             String             @id
+  status         Transaction_status @default(awaiting)
+  orderId        String             @unique
+  amount         Float
+  payment_method String
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  Order          Order              @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  superadmin
+  admin
+  user
+}
+
+enum Order_status {
+  created
   payed
   shipped
   finished
@@ -191,30 +232,10 @@ enum Order_status{
   review_left
   canceled
 }
-model Order{
-  id String @id
-  status Order_status @default(created)
-  userId String
-  cartId Int @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Cart Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  Transaction Transaction?
-}
-enum Transaction_status{
+
+enum Transaction_status {
   awaiting
   payed
   completed
   canceled
-}
-model Transaction{
-  id String @id
-  status Transaction_status @default(awaiting)
-  orderId String @unique
-  amount Float
-  payment_method String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Order Order @relation(fields:[orderId],references: [id],onDelete: Cascade)
 }
