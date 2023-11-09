@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
 
-const poppins = Poppins({ weight: "500" })
+const poppins = Poppins({ weight: "500",subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
