@@ -17,7 +17,10 @@ const config: Config = {
         "primary-600": "#0687d8",
         "primary-700": "#0678c0",
         "primary-800": "#0569a8",
-        background: "#0569a8"
+        background: "#0569a8",
+        "text-black": "#131313",
+        text: "#111827"
+
       }
     },
   },
