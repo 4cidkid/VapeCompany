@@ -26,6 +26,7 @@ model User {
   Review        Review[]
   sessions      Session[]
   Wishlist      Wishlist?
+  VerificationRequest VerificationRequest?
 }
 
 model Address {
@@ -74,7 +75,8 @@ model VerificationRequest {
   expires    DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-
+  userId String? @unique
+  User User? @relation(fields:[userId], references: [id], onDelete: Cascade)
   @@unique([identifier, token])
 }
 
