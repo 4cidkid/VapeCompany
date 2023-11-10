@@ -92,16 +92,17 @@ export const authOptions: NextAuthOptions = {
                         where: { email: profile.email }
                     })
                     const image = account.provider === "google" ? profile?.picture : profile?.avatar_url
-                    // if user exist and has image return true 
+                    // if user exist and has image and is verified => true
                     if (userExist) {
-                        if (userExist.image) {
+                        if (userExist.image && userExist.emailVerified) {
                             return true;
                         }
-                        // if user exist but doesn't have image update image
+                        // if user exist but doesn't have image and email is not verified update
                         await prisma.user.update({
                             where: { email: profile.email },
                             data: {
-                                image: image
+                                image: image,
+                                emailVerified: new Date()
                             }
                         })
                         return true;
@@ -111,7 +112,8 @@ export const authOptions: NextAuthOptions = {
                             data: {
                                 email: profile.email,
                                 name: profile.name,
-                                image: image
+                                image: image,
+                                emailVerified: new Date()
                             }
                         })
                         // if user is created return true
