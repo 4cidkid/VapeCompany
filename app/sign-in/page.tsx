@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Logo from "@/components/logo"
 import Link from "next/link"
-import SignInButton from "@/components/sign-in/signInButton"
-import SignInForm from "@/components/sign-in/signInForm"
+import OauthButton from "@/components/OauthButton"
+import SignInForm from "@/components/signInForm"
 import { authOptions } from "@/lib/auth"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
@@ -38,8 +38,8 @@ export default async function SignIn() {
 
                                 </div>
                             </div>
-                            <SignInButton className="bg-white hover:bg-[rgba(250,248,248,0.88)] transition-colors border border-[rgba(0,0,0,0.27)]" provider={"google"} text={"Sign in with Google"} />
-                            <SignInButton className="bg-black hover:bg-[rgba(0,0,0,0.7)] transition-colors text-white" provider={"github"} text={"Sign in with Github"} />
+                            <OauthButton className="bg-white hover:bg-[rgba(250,248,248,0.88)] transition-colors border border-[rgba(0,0,0,0.27)]" provider={"google"} text={"Sign in with Google"} />
+                            <OauthButton className="bg-black hover:bg-[rgba(0,0,0,0.7)] transition-colors text-white" provider={"github"} text={"Sign in with Github"} />
                         </div>
                         <Link className="whitespace-nowrap absolute left-2/4 -translate-x-2/4 bottom-14 font-extralight" href={"/sign-up"}>
                             Not a member? <strong className="text-primary-500">Sign up today</strong>
