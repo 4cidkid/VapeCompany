@@ -67,7 +67,7 @@ export default function SignInForm() {
                         <label htmlFor="password" className="font-extralight">Password</label>
                         <Link className="text-primary-500" href="/forgot-password">Forgot password?</Link>
                     </div>
-                    <input required autoCapitalize="off" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} placeholder="Enter your email" type="password" name="password" id="password" className="focus-visible:outline-primary-400 pl-2 w-full border border-[rgba(0,0,0,0.27)] rounded-md py-2 shadow-sm" />
+                    <input required autoCapitalize="off" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} placeholder="Enter your password" type="password" name="password" id="password" className="focus-visible:outline-primary-400 pl-2 w-full border border-[rgba(0,0,0,0.27)] rounded-md py-2 shadow-sm" />
                 </div>
                 <button className="mt-3 flex items-center justify-center py-2 bg-primary-500 hover:bg-primary-600 transition-colors  w-full text-lg font-medium text-white rounded-md shadow-sm">
                     Sign in
