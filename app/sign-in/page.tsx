@@ -3,7 +3,14 @@ import Logo from "@/components/logo"
 import Link from "next/link"
 import SignInButton from "@/components/sign-in/signInButton"
 import SignInForm from "@/components/sign-in/signInForm"
-export default function SignIn() {
+import { authOptions } from "@/lib/auth"
+import { getServerSession } from "next-auth"
+import { redirect } from "next/navigation"
+export default async function SignIn() {
+    const session = await getServerSession(authOptions)
+    if (session) {
+        return redirect("/")
+    }
     return (
         <>
             <section className="flex items-center text-text">
