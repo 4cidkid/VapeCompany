@@ -42,7 +42,7 @@ export default async function SignIn() {
                             <OauthButton className="bg-black hover:bg-[rgba(0,0,0,0.7)] transition-colors text-white" provider={"github"} text={"Sign in with Github"} />
                         </div>
                         <Link className="whitespace-nowrap absolute left-2/4 -translate-x-2/4 bottom-14 font-extralight" href={"/sign-up"}>
-                            Not a member? <strong className="text-primary-500">Sign up today</strong>
+                            <span className="text-[rgba(0,0,0,0.46)]">Not a member?</span> <strong className="text-primary-500">Sign up today</strong>
                         </Link>
                     </div>
                 </div>
