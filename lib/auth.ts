@@ -32,7 +32,7 @@ const credentialsProvider = CredentialsProvider({
         // if no username or no password return null ( error )
         if (!credentials?.username || !credentials?.password) {
             // create a message indicating which properties are missing
-            const missingProperties = [!credentials?.username ? 'Email' : '', !credentials?.password ? 'Password' : ''].filter(Boolean).join('and ')
+            const missingProperties = [!credentials?.username ? 'Email' : '', !credentials?.password ? 'Password' : ''].filter(Boolean).join(' and ')
             throw new Error('The following properties are missing: ' + missingProperties);
         }
         const { username, password } = credentials; // get username & password from credentials

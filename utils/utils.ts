@@ -18,11 +18,11 @@ export function validateSignUpData(name: string, lastname: string, username: str
         throwCustomError('You\'ve to enter a valid email', httpStatus.http_status_bad_request)
     }
     if (!validator.isAlpha(name) || !validator.isAlpha(lastname)) {
-        var fieldsNotAlpha = [!name ? 'name' : '', !lastname ? 'Last name' : ''].filter(Boolean).join('and ');
+        var fieldsNotAlpha = [!name ? 'name' : '', !lastname ? 'Last name' : ''].filter(Boolean).join(' and ');
         throwCustomError('Your ' + fieldsNotAlpha + ' must only contain letters', httpStatus.http_status_bad_request)
     }
     if (name.length > 100 || lastname.length > 100) {
-        var fieldsNotMaxLength = [!name ? 'name' : '', !lastname ? 'Last name' : ''].filter(Boolean).join('and ');
+        var fieldsNotMaxLength = [!name ? 'name' : '', !lastname ? 'Last name' : ''].filter(Boolean).join(' and ');
         throwCustomError('Your ' + fieldsNotMaxLength + ' must be a maximum of 100 characters long.')
     }
     if (password.length < 8) {
