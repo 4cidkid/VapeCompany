@@ -43,3 +43,16 @@ export function validateSignUpData(name: string, lastname: string, username: str
         throwCustomError('Your password is not strong enough', httpStatus.http_status_bad_request);
     }
 }
+
+
+export function generateVerificationCode(length = 6) {
+    const possibleCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let verificationCode = '';
+  
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * possibleCharacters.length);
+      verificationCode += possibleCharacters[randomIndex];
+    }
+  
+    return verificationCode;
+  }
