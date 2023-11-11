@@ -43,6 +43,9 @@ const credentialsProvider = CredentialsProvider({
         if (!user)/* user doesn't exist */ {
             throw new Error('The email or password isn\'t correct');
         }
+        if(!user.emailVerified){
+            throw new Error('You need to verify your email');
+        }
         if (user && user.password) {
             const passwordMatch = await bcrypt.compare(password, user.password) // check introduced password vs hash password
             if (passwordMatch) {
