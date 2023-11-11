@@ -63,3 +63,19 @@ export interface StepThreeProps {
     setToken: Dispatch<SetStateAction<string>>,
     setRedirectUser: Dispatch<SetStateAction<boolean>>
 }
+
+export interface RequestData {
+    sender:{
+        name: string,
+        email: string,
+    }
+    to:Array<{
+        email: string,
+        name?:string
+    }>,
+    subject:string,
+    templateId: number
+    params:{
+        [key:string]: string
+    }
+}
