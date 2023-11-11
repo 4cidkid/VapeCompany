@@ -68,7 +68,7 @@ export default function SignUpForm() {
     return (
         <>
             <Steps stepHover={stepHover} setStepHover={setStepHover} step={step} />
-            <div className={clsx(loadingToken && "cursor-wait pointer-events-none ", "min-h-[550px] w-full flex items-center justify-center bg-white")}>
+            <div className={clsx(loadingToken && "cursor-wait pointer-events-none ", "max-sm:px-5 min-h-[550px] w-full flex items-center justify-center bg-white")}>
                 <Transition show={step === 0}
                     className={"w-full"}
                     enter="transition-all duration-500"
@@ -179,8 +179,8 @@ const StepOne = ({ setStep, showPasswordReq, email, setEmail, password, setPassw
 
                         </div>
                     </div>
-                    <OauthButton className="bg-white hover:bg-[rgba(250,248,248,0.88)] transition-colors border border-[rgba(0,0,0,0.27)]" provider={"google"} text={"Sign up with Google"} />
-                    <OauthButton className="bg-black hover:bg-[rgba(0,0,0,0.7)] transition-colors text-white" provider={"github"} text={"Sign up with Github"} />
+                    <OauthButton className="max-sm:px-5 bg-white hover:bg-[rgba(250,248,248,0.88)] transition-colors border border-[rgba(0,0,0,0.27)]" provider={"google"} text={"Sign up with Google"} />
+                    <OauthButton className="max-sm:px-5  bg-black hover:bg-[rgba(0,0,0,0.7)] transition-colors text-white" provider={"github"} text={"Sign up with Github"} />
                 </div>
                 <Link className="whitespace-nowrap absolute left-2/4 -translate-x-2/4 -bottom-24 font-extralight" href={"/sign-in"}>
                     <span className="text-[rgba(0,0,0,0.46)]">Already a member?</span> <strong className="text-primary-500">Sign in</strong>
@@ -283,7 +283,7 @@ const StepThree = ({ token, setToken, email, setRedirectUser }: StepThreeProps) 
                     <label htmlFor="token" className="font-extralight">Code</label>
                     <input required value={token} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setToken(e.target.value)} placeholder="Enter your verification code" type="text" name="text" id="text" className="focus-visible:outline-primary-400 pl-2 w-full border border-[rgba(0,0,0,0.27)] rounded-md py-2 shadow-sm" />
                     <button type="submit" className={"relative transition-all mt-3 flex items-center justify-center py-2 bg-primary-500 hover:bg-primary-600  w-full text-lg font-medium text-white rounded-md shadow-sm"}>
-                        Verify your account
+                        Verify
                     </button>
                 </div>
             </form>

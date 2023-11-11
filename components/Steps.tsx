@@ -3,7 +3,7 @@ import { Fragment, forwardRef } from "react"
 import { StepTextProps, StepsProps } from "@interfaces"
 export default function Steps({ stepHover, setStepHover, step }: StepsProps) {
     return (
-        <div className="flex items-center justify-between absolute -top-14 w-full">
+        <div className="max-sm:px-5 flex items-center justify-between absolute -top-14 w-full">
             <div onMouseEnter={() => setStepHover({ ...stepHover, stepOne: true })} onMouseLeave={() => setStepHover({ ...stepHover, stepOne: step === 0 ? true : false })} className="relative border border-[rgba(0,0,0,0.75)] rounded-full w-8 h-8 flex shrink-0 items-center justify-center">
                 <Transition as={Fragment} show={stepHover.stepOne || step === 0}
                     enter="transition-opacity duration-300"
@@ -83,7 +83,7 @@ const BlueCircles = forwardRef<HTMLDivElement, { ref?: React.Ref<HTMLDivElement>
 
 const StepText = forwardRef<HTMLSpanElement, StepTextProps>((props, ref) => {
     return (
-        <span className="absolute bottom-full -translate-x-2/4 left-2/4 whitespace-nowrap" ref={ref}>
+        <span className="max-sm:hidden absolute bottom-full -translate-x-2/4 left-2/4 whitespace-nowrap" ref={ref}>
             {props.text}
         </span>
     )
