@@ -8,7 +8,8 @@ import { RedirectType, redirect } from "next/navigation";
 export default function SignInForm() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [shouldRedirect,setShouldRedirect] = useState<boolean>(false)
+    const [shouldRedirect, setShouldRedirect] = useState<boolean>(false)
+    const [emailNotVerified, setEmailNotVerified] = useState<boolean>(false);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!validator.isEmail(email)) {
@@ -42,6 +43,9 @@ export default function SignInForm() {
             }
             setShouldRedirect(true)
         } else if (result && result.error) {
+            if (result.error === 'You need to verify your email') {
+                setEmailNotVerified(true);
+            }
             toast.error(result.error, {
                 id: toastId
             })
@@ -52,7 +56,10 @@ export default function SignInForm() {
         }
 
     }
-    if(shouldRedirect){
+    if (emailNotVerified) {
+        return redirect("/sign-up/verify?email=" + email)
+    }
+    if (shouldRedirect) {
         return redirect("/")
     }
     return (
