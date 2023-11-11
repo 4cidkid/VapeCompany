@@ -3,7 +3,7 @@ import { Fragment, forwardRef } from "react"
 import { StepTextProps, StepsProps } from "@interfaces"
 export default function Steps({ stepHover, setStepHover, step }: StepsProps) {
     return (
-        <div className="flex items-center justify-between absolute -top-24 w-full">
+        <div className="flex items-center justify-between absolute -top-14 w-full">
             <div onMouseEnter={() => setStepHover({ ...stepHover, stepOne: true })} onMouseLeave={() => setStepHover({ ...stepHover, stepOne: step === 0 ? true : false })} className="relative border border-[rgba(0,0,0,0.75)] rounded-full w-8 h-8 flex shrink-0 items-center justify-center">
                 <Transition as={Fragment} show={stepHover.stepOne || step === 0}
                     enter="transition-opacity duration-300"
