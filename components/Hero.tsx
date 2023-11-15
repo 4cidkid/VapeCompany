@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
 import Button from "./common/Button";
 export default function HeroSection() {
-    const buttonElement = (
+    const ButtonElement = (
         <>
             Buy now for <strong>&#36;82.90</strong>
         </>
