@@ -77,7 +77,7 @@ export default function Search() {
   const handleCloseMobileSearch = () => setMobileSearch(false)
 
   return (
-    <div className={clsx(mobileSearch ? "w-full absolute left-0 h-full -translate-y-2/4 top-2/4 bg-white flex justify-center items-center gap-5" : "w-[70%] max-lg:w-[90%] relative")}>
+    <div className={clsx(mobileSearch ? "w-full absolute left-0 h-full -translate-y-2/4 top-2/4 bg-white flex justify-center items-center gap-5" : "w-[70%] max-lg:w-[90%] relative","transition-colors")}>
       <Combobox value={query} onChange={setQuery}>
         <Combobox.Input onClick={handleClickMobileSearch} onFocus={handleInputFocus} onBlur={handleInputBlur} className={clsx(mobileSearch ? "w-[80%]" : "w-full", roundedBorderOnInput ? "rounded-md" : "rounded-tr-md rounded-tl-md", "max-sm:hidden relative text-sm bg-transparent border-2 border-[rgba(0,0,0,0.5)] px-4 py-2")} placeholder="Search for products" onChange={handleInputChange} />
 
