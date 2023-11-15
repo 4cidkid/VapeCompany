@@ -8,7 +8,7 @@ export default function HeroSection() {
                         <h2 className="uppercase font-black text-white text-6xl max-sm:text-5xl">VAPORESSO<br /> TAROT NANO</h2>
                         <p className="font-light">All-inclusive ultra compact vaping device equipped with a<br className="max-md:hidden" /> 2000mAh battery alongside the top-filled VECO Tank.</p>
                         <div className="max-sm:flex-col flex items-center gap-5 mt-5">
-                            <button aria-label="buy now" className="px-12 py-2 text-white bg-primary-500 rounded-md">Buy now for <strong>&#36;82.90</strong></button>
+                            <button aria-label="buy now" className="hover:bg-primary-600 hover:-translate-y-1 transition-all px-12 py-2 text-white bg-primary-500 rounded-md">Buy now for <strong>&#36;82.90</strong></button>
                             <button aria-label="see other options" className="flex items-center gap-2">See options <FaArrowRight /></button>
                         </div>
                     </div>
