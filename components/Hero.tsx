@@ -1,5 +1,11 @@
 import { FaArrowRight } from "react-icons/fa";
+import Button from "./common/Button";
 export default function HeroSection() {
+    const buttonElement = (
+        <>
+            Buy now for <strong>&#36;82.90</strong>
+        </>
+    )
     return (
         <>
             <section className="w-full h-[650px] bg-no-repeat bg-right bg-cover bg-[url('https://cdn.nicotordev.com/files/80a2adb6-6318-4b95-a5f3-e0038d3d08d8.webp')]">
@@ -8,7 +14,7 @@ export default function HeroSection() {
                         <h2 className="uppercase font-black text-white text-6xl max-sm:text-5xl">VAPORESSO<br /> TAROT NANO</h2>
                         <p className="font-light">All-inclusive ultra compact vaping device equipped with a<br className="max-md:hidden" /> 2000mAh battery alongside the top-filled VECO Tank.</p>
                         <div className="max-sm:flex-col flex items-center gap-5 mt-5">
-                            <button aria-label="buy now" className="hover:bg-primary-600 hover:-translate-y-1 transition-all px-12 py-2 text-white bg-primary-500 rounded-md">Buy now for <strong>&#36;82.90</strong></button>
+                            <Button ariaLabel="Buy now" text={buttonElement}></Button>
                             <button aria-label="see other options" className="flex items-center gap-2">See options <FaArrowRight /></button>
                         </div>
                     </div>
