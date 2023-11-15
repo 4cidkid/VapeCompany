@@ -5,7 +5,8 @@ import { PiAirplaneTakeoffFill } from "react-icons/pi";
 import Link from "next/link";
 import { Inter } from "next/font/google"
 import Search from "./Search"
-import NavBarMobile from "./NavBarMobile";
+import { NavBar, NavBarMobile } from "./NavBar";
+
 const inter = Inter({ subsets: ["latin"] })
 
 
@@ -43,28 +44,7 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-background-light py-2 max-lg:hidden">
-                    <ul className=" flex items-center justify-evenly text-text w-[80%] max-lg:w-[90%] max-md:w-full mx-auto">
-                        <li>
-                            Vape kits
-                        </li>
-                        <li>
-                            Dispensables
-                        </li>
-                        <li>
-                            E-Liquids
-                        </li>
-                        <li>
-                            Pods & Tanks
-                        </li>
-                        <li>
-                            Coils
-                        </li>
-                        <li>
-                            Brands
-                        </li>
-                    </ul>
-                </div>
+                <NavBar />
                 <div className="max-sm:px-3 max-sm:text-xs max-sm:gap-4 text-sm py-1 w-full flex items-center justify-center gap-12 bg-primary-500">
                     <div className="flex items-center gap-3 max-sm:gap-1 text-center">
                         <BsShieldShaded className=" text-white max-sm:hidden" />
