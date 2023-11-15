@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Logo({ className }: { className?: string }) {
-    const classname = twMerge("w-10 h-10 text-2xl text-white font-bold", className ?? "")
+    const classname = twMerge("w-10 h-10 text-2xl text-white font-bold select-none", className ?? "")
     return (
         <Link href={"/"} className={clsx(classname, inter.className)}>
             VapeCompany
