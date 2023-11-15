@@ -12,9 +12,90 @@ import { MdVapingRooms, MdCloudQueue } from "react-icons/md";
 import { FiChevronRight } from "react-icons/fi";
 import SetFullScreenMobile from "./FullScreenMobile";
 import styles from "@/styles/styles.module.css"
-
 const inter = Inter({ subsets: ["latin"] })
-export default function NavBarMobile() {
+import Carousel from "react-multi-carousel";
+import 'react-multi-carousel/lib/styles.css';
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+
+
+export function NavBar() {
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 4
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 4
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 4
+        },
+    }
+
+
+
+    const CustomRightArrow = ({ onClick, ...rest }: any) => {
+        const {
+            onMove,
+            carouselState: { currentSlide, deviceType }
+        } = rest;
+        return <FaChevronRight className="text-text text-xl absolute right-0 top-2/4 -translate-y-2/4 cursor-pointer z-10" onClick={() => onClick()} />;
+    };
+
+    const CustomLeftArrow = ({ onClick, ...rest }: any) => {
+        const {
+            onMove,
+            carouselState: { currentSlide, deviceType }
+        } = rest;
+        return <FaChevronLeft className="text-text text-xl absolute left-0 top-2/4 -translate-y-2/4 cursor-pointer z-10" onClick={() => onClick()} />;
+    };
+
+
+
+    return (
+        <div className="bg-background-light py-2 max-lg:hidden">
+
+            <Carousel
+                responsive={responsive}
+                arrows={true}
+                containerClass="mx-auto w-[80%] relative cursor-pointer"
+                itemClass="w-fit flex justify-center items-center select-none"
+                autoPlay={true}
+                autoPlaySpeed={1000}
+                infinite={true}
+                ssr={true}
+                pauseOnHover={true}
+                customLeftArrow={<CustomLeftArrow />}
+                customRightArrow={<CustomRightArrow />}
+            >
+                <li>
+                    Vape kits
+                </li>
+                <li>
+                    Dispensables
+                </li>
+                <li>
+                    E-Liquids
+                </li>
+                <li>
+                    Pods & Tanks
+                </li>
+                <li>
+                    Coils
+                </li>
+                <li>
+                    Brands
+                </li>
+            </Carousel>
+
+        </div>
+    )
+}
+
+export function NavBarMobile() {
 
 
     const [showMenu, setShowMenu] = useState<boolean>(false)
