@@ -10,7 +10,7 @@ import { IoIosHelpCircleOutline } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
 import { MdVapingRooms, MdCloudQueue } from "react-icons/md";
 import { FiChevronRight } from "react-icons/fi";
-import SetFullScreenMobile from "./FullScreenMobile";
+import SetFullScreenMobile from "../common/FullScreenMobile";
 import styles from "@/styles/styles.module.css"
 const inter = Inter({ subsets: ["latin"] })
 import Carousel from "react-multi-carousel";

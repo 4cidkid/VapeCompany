@@ -1,8 +1,8 @@
 import Image from "next/image"
-import SignUpForm from "@/components/SignUpForm"
-import Logo from "@/components/Logo"
+import SignUpForm from "@/components/auth/SignUpForm"
+import Logo from "@/components/common/Logo"
 import styles from "@/styles/styles.module.css"
-import SetFullScreenMobile from "@/components/FullScreenMobile"
+import SetFullScreenMobile from "@/components/common/FullScreenMobile"
 export default function SignUp() {
 
     return (

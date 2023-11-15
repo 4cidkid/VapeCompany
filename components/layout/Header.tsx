@@ -1,10 +1,10 @@
-import Logo from "./Logo";
+import Logo from "../common/Logo";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsCart2, BsShieldShaded } from "react-icons/bs";
 import { PiAirplaneTakeoffFill } from "react-icons/pi";
 import Link from "next/link";
 import { Inter } from "next/font/google"
-import Search from "./Search"
+import Search from "../common/Search"
 import { NavBar, NavBarMobile } from "./NavBar";
 
 const inter = Inter({ subsets: ["latin"] })

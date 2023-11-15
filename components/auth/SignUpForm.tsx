@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react"
 import Steps from "./Steps";
-import OauthButton from "@/components/OauthButton"
+import OauthButton from "@/components/auth/OauthButton"
 import Link from "next/link"
 import { StepsState, PasswordReq, StepOneProps, StepTwoProps, ApiFetchCommonReturn, StepThreeProps } from "@/interfaces/interfaces";
 import validator from "validator";
