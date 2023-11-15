@@ -71,24 +71,24 @@ export function NavBar() {
                 customLeftArrow={<CustomLeftArrow />}
                 customRightArrow={<CustomRightArrow />}
             >
-                <li>
+                <Link href="/products/vape-kits">
                     Vape kits
-                </li>
-                <li>
+                </Link>
+                <Link href="/products/dispensables">
                     Dispensables
-                </li>
-                <li>
+                </Link>
+                <Link href="/products/e-liquids">
                     E-Liquids
-                </li>
-                <li>
+                </Link>
+                <Link href="/products/pods-and-tanks">
                     Pods & Tanks
-                </li>
-                <li>
+                </Link>
+                <Link href="/products/coils">
                     Coils
-                </li>
-                <li>
+                </Link>
+                <Link href="/products/brands">
                     Brands
-                </li>
+                </Link>
             </Carousel>
 
         </div>
