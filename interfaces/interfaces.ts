@@ -79,3 +79,9 @@ export interface RequestData {
         [key:string]: string
     }
 }
+export interface CategoriesProps{
+    categories: {
+        name:string,
+        image:string
+    }[]
+}
