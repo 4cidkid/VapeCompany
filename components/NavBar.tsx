@@ -64,7 +64,7 @@ export function NavBar() {
                 containerClass="mx-auto w-[80%] relative cursor-pointer"
                 itemClass="w-fit flex justify-center items-center select-none"
                 autoPlay={true}
-                autoPlaySpeed={1000}
+                autoPlaySpeed={2500}
                 infinite={true}
                 ssr={true}
                 pauseOnHover={true}
