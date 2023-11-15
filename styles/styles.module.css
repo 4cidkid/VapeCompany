@@ -2,3 +2,7 @@
   height: 100dvh;
   height: calc(var(--vh, 1vh) * 100);
 }
+
+.categories:hover img{
+  transform: scale(1.1);
+}
