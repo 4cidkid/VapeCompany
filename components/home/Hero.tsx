@@ -1,5 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
-import Button from "./common/Button";
+import Button from "../common/Button";
 export default function HeroSection() {
     const ButtonElement = (
         <>

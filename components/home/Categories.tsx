@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { CategoriesProps } from "@/interfaces/interfaces";
 import clsx from "clsx";
 import Image from "next/image";
-import Button from "./common/Button";
+import Button from "../common/Button";
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from "@/styles/styles.module.css"
 export default function Categories({ categories }: CategoriesProps | { categories: { name: string; image: string; }[] }) {
