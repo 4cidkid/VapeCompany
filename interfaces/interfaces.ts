@@ -85,3 +85,9 @@ export interface CategoriesProps{
         image:string
     }[]
 }
+export interface ButtonProps{
+    className?: string,
+    ariaLabel?: string,
+    text: string | JSX.Element
+    link?: string
+}
