@@ -91,7 +91,7 @@ export default function Categories({ categories }: CategoriesProps | { categorie
                 <div className="overflow-hidden w-[300px]">
                     <div className="inline-flex items-center child:w-[50px]">
                         {allPagesNumber.map((num) => (
-                            <div id={`pagination-${num}`}>
+                            <div id={`pagination-${num}`} key={num}>
                                 <div onClick={() => currentPageSetter(num)} className={clsx(currentPage === num ? "border border-primary-500 bg-primary-500" : "border border-[#ccc] scale-[70%]", "flex items-center justify-center rounded-full w-10 h-10 cursor-pointer transition-all duration-100")}>
                                     <span className={clsx(num === currentPage && "text-xl font-bold text-white", "transition-all")}>{num}</span>
                                 </div>
