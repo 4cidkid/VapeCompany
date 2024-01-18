@@ -1,5 +1,7 @@
 import { httpStatus } from "@/constants/httpStatus";
 import validator from "validator";
+import { headers } from "next/headers";
+import UAParser from "ua-parser-js";
 export function throwCustomError(message: string = httpStatus.http_message_internal_server_error, status: number = httpStatus.http_status_internal_server_error) {
     const customError = {
         message,
@@ -9,7 +11,7 @@ export function throwCustomError(message: string = httpStatus.http_message_inter
     throw customError;
 }
 
-export function validateSignUpData(name: string, lastname: string, username: string, password: string):void {
+export function validateSignUpData(name: string, lastname: string, username: string, password: string): void {
     if (!name || !lastname || !username || !password) {
         var fieldsMissing = [!name ? 'Name' : '', !lastname ? 'Last name' : '', !username ? 'Email' : '', !password ? 'Password' : ''].filter(Boolean).join(', ');
         throwCustomError('The following fields are missing: ' + fieldsMissing, httpStatus.http_status_bad_request)
@@ -48,11 +50,26 @@ export function validateSignUpData(name: string, lastname: string, username: str
 export function generateVerificationCode(length = 6) {
     const possibleCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let verificationCode = '';
-  
+
     for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * possibleCharacters.length);
-      verificationCode += possibleCharacters[randomIndex];
+        const randomIndex = Math.floor(Math.random() * possibleCharacters.length);
+        verificationCode += possibleCharacters[randomIndex];
     }
-  
+
     return verificationCode;
-  }
+}
+
+export function getDeviceType(): string {
+    /* 
+Get device type from user agent
+*/
+    let deviceType = 'desktop'
+    const userAgent = headers().get('user-agent')
+    const parser = new UAParser()
+    if (userAgent) {
+        parser.setUA(userAgent)
+        const result = parser.getResult()
+        deviceType = (result.device && result.device.type) || 'desktop'
+    }
+    return deviceType
+}
