@@ -50,7 +50,9 @@ export default function Search() {
 
   // set width of the window on first render
   useEffect(() => {
-    setWindowWidth(window.innerWidth)
+    if(window !== undefined) {
+      setWindowWidth(window.innerWidth)
+    }
   }, [])
 
 
