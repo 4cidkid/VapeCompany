@@ -6,10 +6,10 @@ import Image from "next/image";
 import Button from "../common/Button";
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from "@/styles/styles.module.css"
-export default function Categories({ categories }: CategoriesProps | { categories: { name: string; image: string; }[] }) {
+export default function Categories({ categories, numPagesProp }: CategoriesProps) {
 
     // total number of pages based on the number of categories
-    const [numPages, setNumPages] = useState<number>(Math.round(categories.length / 6))
+    const [numPages, setNumPages] = useState<number>(numPagesProp)
     // define the current page that we're at
     const [currentPage, setCurrentPage] = useState<number>(1)
     // array of all pages eg: [1,2,3]
@@ -47,6 +47,7 @@ export default function Categories({ categories }: CategoriesProps | { categorie
             <FaArrowRight />
         </>
     )
+    
 
     return (
         <div className='pt-4 w-full overflow-hidden'>
@@ -61,7 +62,7 @@ export default function Categories({ categories }: CategoriesProps | { categorie
                                             <div key={catIndex + category.name} className={`basis-full bg-cover bg-center relative ${styles.categories} overflow-hidden transition-transform h-[300px]`}>
                                                 <div className={`relative z-10 text-white flex flex-col gap-4 items-center justify-center w-full h-full backdrop-blur-sm hover:backdrop-blur-0 hover:backdrop-brightness-95 backdrop-brightness-50 transition-all`}>
                                                     <span className="text-5xl font-semibold">{category.name}</span>
-                                                    <Button link={"/products/"+category.name.replace(/\s/g, '-').toLowerCase()} className="font-medium flex items-center justify-center gap-4" text={<ButtonElement text={`See ${category.name}`} />} />
+                                                    <Button link={"/products/" + category.name.replace(/\s/g, '-').toLowerCase()} className="font-medium flex items-center justify-center gap-4" text={<ButtonElement text={`See ${category.name}`} />} />
                                                 </div>
                                                 <Image className={`transition-transform w-full h-full object-cover absolute left-0 top-0`} width={1000} height={1000} src={category.image} alt={category.name} />
                                             </div>
@@ -71,7 +72,7 @@ export default function Categories({ categories }: CategoriesProps | { categorie
                                         <div key={catIndex + category.name} className={clsx(`max-sm:basis-full basis-[49%] relative ${styles.categories} overflow-hidden transition-transform h-[300px]`)}>
                                             <div className={` relative z-10 text-white flex flex-col gap-4 items-center justify-center w-full h-full backdrop-blur-sm hover:backdrop-blur-0 hover:backdrop-brightness-95 backdrop-brightness-50 transition-all`}>
                                                 <span className=" text-5xl font-semibold">{category.name}</span>
-                                                <Button link={"/products/"+category.name.replace(/\s/g, '-').toLowerCase()} className="max-sm:px-3 font-medium flex items-center justify-center gap-4" text={<ButtonElement text={`See ${category.name}`} />} />
+                                                <Button link={"/products/" + category.name.replace(/\s/g, '-').toLowerCase()} className="max-sm:px-3 font-medium flex items-center justify-center gap-4" text={<ButtonElement text={`See ${category.name}`} />} />
                                             </div>
                                             <Image className={`transition-transform w-full h-full object-cover absolute left-0 top-0`} width={1000} height={1000} src={category.image} alt={category.name} />
                                         </div>
