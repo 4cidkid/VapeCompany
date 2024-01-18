@@ -5,7 +5,7 @@ import Image from "next/image";
 import Button from "../common/Button";
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from './categories.module.css';
-export default function Categories({ categories, numPagesProp }: CategoriesProps) {
+export default function Categories({ categories }: CategoriesProps) {
 
 
     return (
