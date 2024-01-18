@@ -4,12 +4,11 @@ import Image from 'next/image'
 import Categories from '@/components/home/Categories'
 import { categories } from '@/mocks/search'
 export default function Home() {
-
+  const allCategories = categories
   return (
     <>
-      <Header />
       <HeroSection />
-      <Categories categories={categories} />
+      <Categories categories={allCategories} numPagesProp={Math.round(categories.length / 6)} />
     </>
   )
 }
