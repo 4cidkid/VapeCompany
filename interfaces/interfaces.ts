@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { Toast } from "react-hot-toast";
 export interface SignUpBody {
@@ -42,7 +43,7 @@ export interface StepTwoProps {
     name: string,
     lastName: string,
     password: string,
-    email:string,
+    email: string,
     setName: Dispatch<SetStateAction<string>>,
     setLastName: Dispatch<SetStateAction<string>>,
     setStep: Dispatch<SetStateAction<number>>
@@ -59,35 +60,41 @@ export interface ApiFetchCommonReturn {
 }
 export interface StepThreeProps {
     token: string,
-    email:string
+    email: string
     setToken: Dispatch<SetStateAction<string>>,
     setRedirectUser: Dispatch<SetStateAction<boolean>>
 }
 
 export interface RequestData {
-    sender:{
+    sender: {
         name: string,
         email: string,
     }
-    to:Array<{
+    to: Array<{
         email: string,
-        name?:string
+        name?: string
     }>,
-    subject:string,
+    subject: string,
     templateId: number
-    params:{
-        [key:string]: string
+    params: {
+        [key: string]: string
     }
 }
-export interface CategoriesProps{
+export interface CategoriesProps {
     categories: {
-        name:string,
-        image:string
+        name: string,
+        image: string
     }[],
 }
-export interface ButtonProps{
+export interface ButtonProps {
     className?: string,
     ariaLabel?: string,
     text: string | JSX.Element
     link?: string
+}
+export interface Product {
+    id: number,
+    name: string,
+    price: number,
+    image: string | StaticImageData,
 }
