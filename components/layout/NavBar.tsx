@@ -18,7 +18,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 
-export function NavBar() {
+export function NavBar({ deviceType }: { deviceType: string }) {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -57,7 +57,6 @@ export function NavBar() {
 
     return (
         <div className="bg-background-light py-2 max-lg:hidden">
-
             <Carousel
                 responsive={responsive}
                 arrows={true}
@@ -70,6 +69,7 @@ export function NavBar() {
                 pauseOnHover={true}
                 customLeftArrow={<CustomLeftArrow />}
                 customRightArrow={<CustomRightArrow />}
+                deviceType={deviceType}
             >
                 <Link href="/products/vape-kits">
                     Vape kits
