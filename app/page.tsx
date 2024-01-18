@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import HeroSection from '@/components/home/Hero'
 import Image from 'next/image'
 import Categories from '@/components/home/Categories'
+import Products from '@/components/home/products'
 import { categories } from '@/mocks/search'
 import Newsletter from '@/components/home/newsLetter'
 import vapeOneImage from '@/public/assets/images/home/vape-1.webp'
@@ -14,7 +15,7 @@ export default function Home() {
     <>
       <HeroSection />
       <Categories categories={allCategories} />
-      <div className='relative bg-primary-600 h-44 w-full my-16 py-4 flex items-center justify-center overflow-hidden'>
+      <div className='relative bg-primary-600 h-44 w-full mt-16 py-4 flex items-center justify-center overflow-hidden'>
         <div className='absolute w-full h-full z-10'>
           <Image className='absolute left-2 top-2' width={400} height={400} src={vapeOneImage} alt='vape' />
           <Image className='absolute left-12 -top-6' width={400} height={400} src={vapeTwoImage} alt='vape' />
@@ -33,6 +34,7 @@ export default function Home() {
           <Image className='absolute right-12 -top-4' width={400} height={400} src={vapeFourImage} alt='vape' />
         </div>
       </div>
+      <Products/>
     </>
   )
 }
