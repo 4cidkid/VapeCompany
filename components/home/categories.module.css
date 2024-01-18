@@ -1,0 +1,25 @@
+.category{
+    overflow: hidden;
+}
+.category img{
+    transition: transform 0.2s ease-in-out;
+}
+.category:hover img{
+    transform: scale(1.1);
+}
+.category p {
+    transition: color 0.2s ease-in-out;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.category:hover p {
+    color: #fff;
+}
+
+.category> :last-child {
+    transition: backdrop-filter 0.2s ease-in-out;
+}
+
+.category:hover> :last-child {
+    backdrop-filter: brightness(92%) !important;
+}
