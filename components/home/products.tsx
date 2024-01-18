@@ -4,18 +4,9 @@ import { headers } from 'next/headers'
 import { UAParser } from "ua-parser-js";
 import ProductCarousel from "./productCarousel";
 import { productMock } from "@/mocks/products";
+import { getDeviceType } from "@/utils/utils";
 export default function Products() {
-    /* 
-   Get device type from user agent
-*/
-    let deviceType = 'desktop'
-    const userAgent = headers().get('user-agent')
-    const parser = new UAParser()
-    if (userAgent) {
-        parser.setUA(userAgent)
-        const result = parser.getResult()
-        deviceType = (result.device && result.device.type) || 'desktop'
-    }
+    const deviceType = getDeviceType();
     return (
         <div className="bg-background-light py-20">
             <div className="w-[90%] ml-auto flex flex-col items-start">
