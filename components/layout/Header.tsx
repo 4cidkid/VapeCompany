@@ -6,11 +6,25 @@ import Link from "next/link";
 import { Inter } from "next/font/google"
 import Search from "../common/Search"
 import { NavBar, NavBarMobile } from "./NavBar";
+import { headers } from 'next/headers'
+import { UAParser } from "ua-parser-js";
+
 
 const inter = Inter({ subsets: ["latin"] })
 
 
 export default function Header() {
+    /* 
+       Get device type from user agent
+    */
+    let deviceType = 'desktop'
+    const userAgent = headers().get('user-agent')
+    const parser = new UAParser()
+    if (userAgent) {
+        parser.setUA(userAgent)
+        const result = parser.getResult()
+        deviceType = (result.device && result.device.type) || 'desktop'
+    }
     return (
         <>
             <header className="w-full">
@@ -44,7 +58,7 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                <NavBar />
+                <NavBar deviceType={deviceType} />
                 <div className="max-sm:px-3 max-sm:text-xs max-sm:gap-4 text-sm py-1 w-full flex items-center justify-center gap-12 bg-primary-500">
                     <div className="flex items-center gap-3 max-sm:gap-1 text-center">
                         <BsShieldShaded className=" text-white max-sm:hidden" />
