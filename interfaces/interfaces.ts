@@ -98,3 +98,8 @@ export interface Product {
     price: number,
     image: string | StaticImageData,
 }
+export interface Brands {
+    id: number,
+    name: string,
+    image: string | StaticImageData,
+}
