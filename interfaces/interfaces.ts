@@ -84,7 +84,6 @@ export interface CategoriesProps{
         name:string,
         image:string
     }[],
-    numPagesProp: number
 }
 export interface ButtonProps{
     className?: string,
