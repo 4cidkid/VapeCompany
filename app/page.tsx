@@ -9,6 +9,7 @@ import vapeOneImage from '@/public/assets/images/home/vape-1.webp'
 import vapeTwoImage from '@/public/assets/images/home/vape-2.webp'
 import vapeThreeImage from '@/public/assets/images/home/vape-3.webp'
 import vapeFourImage from '@/public/assets/images/home/vape-4.webp'
+import FeaturedBrands from '@/components/home/featuredBrands'
 export default function Home() {
   const allCategories = categories
   return (
@@ -35,6 +36,7 @@ export default function Home() {
         </div>
       </div>
       <Products/>
+      <FeaturedBrands />
     </>
   )
 }
