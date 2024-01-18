@@ -1,7 +1,7 @@
-import geekVapeImage from '@/public/assets/images/mocks/geekvape.jpg';
-import luxeTwoImage from '@/public/assets/images/mocks/luxe_2.jpg';
-import AegisImage from '@/public/assets/images/mocks/aegis.jpg';
-import deliriumImage from '@/public/assets/images/mocks/delirium.png';
+import geekVapeImage from '@/public/assets/images/mocks/products/geekvape.jpg';
+import luxeTwoImage from '@/public/assets/images/mocks/products/luxe_2.jpg';
+import AegisImage from '@/public/assets/images/mocks/products/aegis.jpg';
+import deliriumImage from '@/public/assets/images/mocks/products/delirium.png';
 import { Product } from '@/interfaces/interfaces';
 export const productMock: Product[] = [
     {
