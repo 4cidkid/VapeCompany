@@ -8,23 +8,14 @@ import Search from "../common/Search"
 import { NavBar, NavBarMobile } from "./NavBar";
 import { headers } from 'next/headers'
 import { UAParser } from "ua-parser-js";
+import { getDeviceType } from "@/utils/utils";
 
 
 const inter = Inter({ subsets: ["latin"] })
 
 
 export default function Header() {
-    /* 
-       Get device type from user agent
-    */
-    let deviceType = 'desktop'
-    const userAgent = headers().get('user-agent')
-    const parser = new UAParser()
-    if (userAgent) {
-        parser.setUA(userAgent)
-        const result = parser.getResult()
-        deviceType = (result.device && result.device.type) || 'desktop'
-    }
+    const deviceType = getDeviceType();
     return (
         <>
             <header className="w-full">
