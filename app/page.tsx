@@ -41,7 +41,7 @@ export default function Home() {
       </div>
       <Products />
       <FeaturedBrands />
-      <div className='w-[90%] mt-12 mx-auto pb-32'>
+      <div className='max-md:w-full max-lg:px-3 w-[90%] mt-12 mx-auto pb-32'>
         <div className='cursor-pointer flex max-lg:flex-wrap max-lg:child:flex-grow child:min-w-[200px] items-center child:basis-[calc(25%-2rem)] child:h-[400px] child-hover:basis-[calc(50%-2rem)] child:transition-all child:duration-300 child:flex-shrink gap-[2rem]'>
           <div className='relative'>
             <Image width={267} height={267} className='w-full h-full object-cover absolute left-0 top-0' src={freeShippingImage} alt='Free shipping over $50' />
