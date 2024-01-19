@@ -7,17 +7,17 @@ export default function ProductCard({ product }: { product: Product }) {
                 <Image className={`w-full h-full object-contain drag-select-none`} src={product.image} alt={product.name} width={200} height={200} />
             </div>
             <div>
-                <p className="text-xl">{
+                <p className="text-xl max-md:text-lg">{
                     product.name.toUpperCase()
                 }</p>
                 <div className="flex flex-col">
-                    <b className="text-primary-500 text-xl">
+                    <b className="text-primary-500 text-xl max-md:text-lg">
                         ${
                             product.price
                         }
                     </b>
-                    <span className="text-[rgba(62,62,62,1)] text-sm">
-                        Before <b className="text-base">${(product.price + 10).toFixed(2)}</b>
+                    <span className="text-[rgba(62,62,62,1)] text-sm max-md:text-xs">
+                        Before <b className="text-base max-md:text-sm">${(product.price + 10).toFixed(2)}</b>
                     </span>
                 </div>
             </div>
