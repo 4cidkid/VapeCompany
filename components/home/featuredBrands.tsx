@@ -2,8 +2,9 @@ import { getDeviceType } from "@/utils/utils";
 import BrandsCarousel from "./brandsCarousel";
 import { brandsMock } from "@/mocks/brands";
 import Image from "next/image";
+import { headers } from 'next/headers'
 export default function FeaturedBrands() {
-    const deviceType = getDeviceType();
+    const deviceType = getDeviceType(headers);
     let allBrandComponents: React.ReactNode[] = [];
     let temporalBrandArray: React.ReactNode[] = [];
     for (let i = 0; i < brandsMock.length; i++) {

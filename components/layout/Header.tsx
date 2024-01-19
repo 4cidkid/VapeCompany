@@ -7,15 +7,13 @@ import { Inter } from "next/font/google"
 import Search from "../common/Search"
 import { NavBar, NavBarMobile } from "./NavBar";
 import { headers } from 'next/headers'
-import { UAParser } from "ua-parser-js";
 import { getDeviceType } from "@/utils/utils";
-
 
 const inter = Inter({ subsets: ["latin"] })
 
 
 export default function Header() {
-    const deviceType = getDeviceType();
+    const deviceType = getDeviceType(headers);
     return (
         <>
             <header className="w-full">
