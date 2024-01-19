@@ -1,7 +1,7 @@
 import { httpStatus } from "@/constants/httpStatus";
 import validator from "validator";
-import { headers } from "next/headers";
 import UAParser from "ua-parser-js";
+import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 export function throwCustomError(message: string = httpStatus.http_message_internal_server_error, status: number = httpStatus.http_status_internal_server_error) {
     const customError = {
         message,
@@ -59,7 +59,7 @@ export function generateVerificationCode(length = 6) {
     return verificationCode;
 }
 
-export function getDeviceType(): string {
+export function getDeviceType(headers: () => ReadonlyHeaders): string {
     /* 
 Get device type from user agent
 */
