@@ -9,6 +9,10 @@ import vapeOneImage from '@/public/assets/images/home/vape-1.webp'
 import vapeTwoImage from '@/public/assets/images/home/vape-2.webp'
 import vapeThreeImage from '@/public/assets/images/home/vape-3.webp'
 import vapeFourImage from '@/public/assets/images/home/vape-4.webp'
+import customServiceImage from '@/public/assets/images/home/customerService.jpg';
+import earnPointsImage from '@/public/assets/images/home/earnPoints.jpg';
+import freeShippingImage from '@/public/assets/images/home/freeShipping.jpg';
+import exclusiveDealsImage from '@/public/assets/images/home/exclusiveDeals.jpg';
 import FeaturedBrands from '@/components/home/featuredBrands'
 export default function Home() {
   const allCategories = categories
@@ -35,8 +39,48 @@ export default function Home() {
           <Image className='absolute right-12 -top-4' width={400} height={400} src={vapeFourImage} alt='vape' />
         </div>
       </div>
-      <Products/>
+      <Products />
       <FeaturedBrands />
+      <div className='w-[90%] mt-12 mx-auto pb-32'>
+        <div className='cursor-pointer flex items-center child:basis-[calc(25%-2rem)] child:h-[400px] child-hover:basis-[calc(50%-2rem)] child:transition-all child:duration-300 child:flex-shrink gap-[2rem]'>
+          <div className='relative'>
+            <Image width={267} height={267} className='w-full h-full object-cover absolute left-0 top-0' src={freeShippingImage} alt='Free shipping over $50' />
+            <div className='p-4 text-white w-full h-full flex items-center justify-center backdrop-brightness-50'>
+              <p className='text-5xl'>
+                <b>Free shipping</b>{" "}
+                over $50
+              </p>
+            </div>
+          </div>
+          <div className='relative'>
+            <Image width={267} height={267} className='w-full h-full object-cover absolute left-0 top-0' src={customServiceImage} alt='Customer service 24/7' />
+            <div className='p-4 text-white w-full h-full flex items-center justify-center backdrop-brightness-50'>
+              <p className='text-5xl'>
+                Customer service{" "}
+                <b>24/7</b>
+              </p>
+            </div>
+          </div>
+          <div className='relative'>
+            <Image width={267} height={267} className='w-full h-full object-cover absolute left-0 top-0' src={exclusiveDealsImage} alt="Exclusive deals 4 y'all" />
+            <div className='p-4 text-white w-full h-full flex items-center justify-center backdrop-brightness-50'>
+              <p className='text-5xl'>
+                <b>Exclusive Deals</b>{" "}
+                4 y&apos;all
+              </p>
+            </div>
+          </div>
+          <div className='relative'>
+            <Image width={267} height={267} className='w-full h-full object-cover absolute left-0 top-0' src={earnPointsImage} alt='Earn points for each purchase' />
+            <div className='p-4 text-white w-full h-full flex items-center justify-center backdrop-brightness-50'>
+              <p className='text-5xl'>
+                <b>Earn points</b>{" "}
+                for each purchase
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
