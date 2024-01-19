@@ -13,12 +13,16 @@ export default function ProductCarousel({ deviceType, products }: { deviceType: 
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 3.5
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
             items: 3
         },
+        tablet: {
+            breakpoint: { max: 1024, min: 640 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 640, min: 0 },
+            items: 1
+        }
     }
 
     const CustomRightArrow = ({ onClick, ...rest }: any) => {
@@ -28,7 +32,7 @@ export default function ProductCarousel({ deviceType, products }: { deviceType: 
         } = rest;
         return (
             <div className="bg-primary-500 p-2 rounded-full absolute right-5 top-2/4 -translate-y-2/4 cursor-pointer z-10" onClick={() => onClick()}>
-                <FaChevronRight className="text-white text-2xl"/>
+                <FaChevronRight className="text-white text-2xl" />
             </div>
         )
     };
@@ -39,7 +43,7 @@ export default function ProductCarousel({ deviceType, products }: { deviceType: 
             carouselState: { currentSlide, deviceType }
         } = rest;
         return (
-            <div className="bg-primary-500 p-2 rounded-full absolute left-0 top-2/4 -translate-y-2/4 cursor-pointer z-10" onClick={() => onClick()}>
+            <div className="bg-primary-500 p-2 rounded-full absolute max-sm:left-5 sm:left-0 top-2/4 -translate-y-2/4 cursor-pointer z-10" onClick={() => onClick()}>
                 <FaChevronLeft className="text-white text-2xl" />
             </div>
         );
@@ -52,7 +56,7 @@ export default function ProductCarousel({ deviceType, products }: { deviceType: 
             responsive={responsive}
             arrows={true}
             containerClass="mx-auto w-full relative cursor-pointer min-h-[400px] py-2"
-            itemClass="w-full flex justify-center items-center select-none"
+            itemClass="w-full flex justify-center items-center select-none max-md:px-2 max-sm:px-0"
             autoPlay={false}
             ssr={true}
             customLeftArrow={<CustomLeftArrow />}
