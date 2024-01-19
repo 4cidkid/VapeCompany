@@ -1,15 +1,33 @@
 import { getDeviceType } from "@/utils/utils";
 import BrandsCarousel from "./brandsCarousel";
 import { brandsMock } from "@/mocks/brands";
-export default function FeaturedBrands(){
+import Image from "next/image";
+export default function FeaturedBrands() {
     const deviceType = getDeviceType();
-    return(
-        <div className="py-32">
+    let allBrandComponents: React.ReactNode[] = [];
+    let temporalBrandArray: React.ReactNode[] = [];
+    for (let i = 0; i < brandsMock.length; i++) {
+        temporalBrandArray.push(
+            <div className="w-full h-full">
+                <Image className="w-full h-full object-contain" src={brandsMock[i].image} alt={brandsMock[i].name} width={500} height={500} />
+            </div>
+        )
+        if ((i % 11 === 0 && i !== 0) || i === brandsMock.length - 1) {
+            allBrandComponents.push(
+                <div className="flex flex-wrap h-full">
+                    {temporalBrandArray.map((brand, index) => <div className="basis-1/6 p-12" key={index}>{brand}</div>)}
+                </div>
+            )
+            temporalBrandArray = [];
+        }
+    }
+    return (
+        <div className="pt-32">
             <div className="text-center">
                 <h3 className="text-3xl uppercase font-black">
                     Featured Brands
                 </h3>
-                <BrandsCarousel brands={brandsMock} deviceType={deviceType} />
+                <BrandsCarousel brandsComponents={allBrandComponents} deviceType={deviceType} />
             </div>
         </div>
     )
