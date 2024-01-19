@@ -15,8 +15,8 @@ export default function FeaturedBrands() {
         )
         if ((i % 11 === 0 && i !== 0) || i === brandsMock.length - 1) {
             allBrandComponents.push(
-                <div className="flex flex-wrap h-full">
-                    {temporalBrandArray.map((brand, index) => <div className="basis-1/6 p-12" key={index}>{brand}</div>)}
+                <div className="flex flex-wrap h-full justify-center">
+                    {temporalBrandArray.map((brand, index) => <div className="min-w-[200px] basis-1/6 p-12" key={index}>{brand}</div>)}
                 </div>
             )
             temporalBrandArray = [];
