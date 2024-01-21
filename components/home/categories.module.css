@@ -1,12 +1,15 @@
-.category{
+.category {
     overflow: hidden;
 }
-.category img{
+
+.category img {
     transition: transform 0.2s ease-in-out;
 }
-.category:hover img{
+
+.category:hover img {
     transform: scale(1.1);
 }
+
 .category p {
     color: #fff;
 }
@@ -19,4 +22,39 @@
 
 .category:hover> :last-child {
     backdrop-filter: brightness(92%) !important;
+}
+
+
+#categoryContainer {
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    height: 1000px;
+}
+.categoryOne{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.categoryThree{
+    grid-row: span 2;
+}
+.categoryNine{
+    grid-column: span 2;
+}
+@media only screen and (width < 992px){
+    #categoryContainer {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        height: 1300px;
+    }
+    .categoryCero{
+        grid-column: span 2;
+    }
+    .categoryEight{
+        grid-row: span 2;
+    }
+   
 }
