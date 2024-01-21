@@ -14,8 +14,10 @@ import earnPointsImage from '@/public/assets/images/home/earnPoints.jpg';
 import freeShippingImage from '@/public/assets/images/home/freeShipping.jpg';
 import exclusiveDealsImage from '@/public/assets/images/home/exclusiveDeals.jpg';
 import FeaturedBrands from '@/components/home/featuredBrands'
+import { headers } from 'next/headers'
 export default function Home() {
   const allCategories = categories
+  
   return (
     <>
       <HeroSection />
@@ -41,8 +43,8 @@ export default function Home() {
       </div>
       <Products />
       <FeaturedBrands />
-      <div className='max-md:w-full max-lg:px-3 w-[90%] mt-12 mx-auto pb-32'>
-        <div className='cursor-pointer flex max-lg:flex-wrap max-lg:child:flex-grow child:min-w-[200px] items-center child:basis-[calc(25%-2rem)] child:h-[400px] child-hover:basis-[calc(50%-2rem)] child:transition-all child:duration-300 child:flex-shrink gap-[2rem]'>
+      <div className=' max-md:w-full max-sm:px-0 max-lg:px-3 w-[90%] mt-12 mx-auto pb-32'>
+        <div className='child:rounded-xl child:overflow-hidden justify-center p-5 cursor-pointer flex max-lg:flex-wrap max-lg:child:flex-grow child:min-w-[130px] items-center child:basis-[calc(25%-2rem)] child:h-[400px] child-hover:basis-[calc(50%-1rem)] child:transition-all child:duration-300 child:flex-shrink gap-[1rem]'>
           <div className='relative'>
             <Image width={267} height={267} className='w-full h-full object-cover absolute left-0 top-0' src={freeShippingImage} alt='Free shipping over $50' />
             <div className='p-4 text-white w-full h-full flex items-center justify-center backdrop-brightness-50'>

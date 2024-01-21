@@ -16,11 +16,15 @@ export default function ProductCarousel({ deviceType, products }: { deviceType: 
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1024, min: 640 },
+            breakpoint: { max: 1024, min: 780 },
+            items: 3
+        },
+        mobileSm: {
+            breakpoint: { max: 780, min: 500 },
             items: 2
         },
         mobile: {
-            breakpoint: { max: 640, min: 0 },
+            breakpoint: { max: 500, min: 0 },
             items: 1
         }
     }
@@ -56,7 +60,7 @@ export default function ProductCarousel({ deviceType, products }: { deviceType: 
             responsive={responsive}
             arrows={true}
             containerClass="mx-auto w-full relative cursor-pointer min-h-[400px] py-2"
-            itemClass="w-full flex justify-center items-center select-none max-md:px-2 max-sm:px-0"
+            itemClass="w-full flex justify-center items-center select-none px-2 max-sm:px-0"
             autoPlay={false}
             ssr={true}
             customLeftArrow={<CustomLeftArrow />}

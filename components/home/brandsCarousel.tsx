@@ -1,4 +1,5 @@
 'use client';
+import useWindowWidth from "@/hooks/useWindowWidth";
 import { Brands } from "@/interfaces/interfaces";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Carousel from "react-multi-carousel";
@@ -20,6 +21,8 @@ export default function BrandsCarousel({ brandsComponents, deviceType }: { brand
             items: 1
         },
     }
+
+    const windowWidth = useWindowWidth();
 
     const CustomRightArrow = ({ onClick, ...rest }: any) => {
         const {
@@ -45,22 +48,32 @@ export default function BrandsCarousel({ brandsComponents, deviceType }: { brand
         );
     };
     return (
-        <Carousel
-            responsive={responsive}
-            arrows={true}
-            containerClass="mx-auto w-full relative cursor-pointer min-h-[400px] py-2 max-w-[90%]"
-            itemClass="w-full flex justify-center items-center select-none"
-            autoPlay={false}
-            ssr={true}
-            customLeftArrow={<CustomLeftArrow />}
-            customRightArrow={<CustomRightArrow />}
-            renderArrowsWhenDisabled={true}
-            deviceType={deviceType}
-        >
-            {
-                brandsComponents.map((brand, index) => <div key={index}>{brand}</div>)
-            }
+        <>
+            {windowWidth && windowWidth > 640 && <Carousel
+                responsive={responsive}
+                arrows={true}
+                containerClass="mx-auto w-full relative cursor-pointer min-h-[400px] py-2 max-w-[90%] max-sm:hidden"
+                itemClass="w-full flex justify-center items-center select-none"
+                autoPlay={false}
+                ssr={true}
+                customLeftArrow={<CustomLeftArrow />}
+                customRightArrow={<CustomRightArrow />}
+                renderArrowsWhenDisabled={true}
+                deviceType={deviceType}
 
-        </Carousel>
+            >
+                {
+                    brandsComponents.map((brand, index) => <div key={index}>{brand}</div>)
+                }
+
+            </Carousel>}
+
+            <div className="sm:hidden">
+                {
+                    brandsComponents[0]
+                }
+            </div>
+
+        </>
     )
 }

@@ -15,8 +15,8 @@ export default function FeaturedBrands() {
         )
         if ((i % 11 === 0 && i !== 0) || i === brandsMock.length - 1) {
             allBrandComponents.push(
-                <div className="flex flex-wrap h-full justify-center">
-                    {temporalBrandArray.map((brand, index) => <div className="min-w-[200px] basis-1/6 p-12" key={index}>{brand}</div>)}
+                <div className="flex flex-wrap h-full justify-center max-sm:gap-12">
+                    {temporalBrandArray.map((brand, index) => <div className="min-w-[200px] basis-1/6 p-12 max-sm:p-0 max-sm:min-w-[100px]" key={index}>{brand}</div>)}
                 </div>
             )
             temporalBrandArray = [];
@@ -25,7 +25,7 @@ export default function FeaturedBrands() {
     return (
         <div className="pt-32">
             <div className="text-center">
-                <h3 className="text-3xl uppercase font-black">
+                <h3 className="text-3xl uppercase font-black max-sm:pb-5">
                     Featured Brands
                 </h3>
                 <BrandsCarousel brandsComponents={allBrandComponents} deviceType={deviceType} />
