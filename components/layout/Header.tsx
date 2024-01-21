@@ -16,7 +16,7 @@ export default function Header() {
     const deviceType = getDeviceType(headers);
     return (
         <>
-            <header className="w-full">
+            <header className="w-full sticky top-0 z-[999]">
                 <div className="bg-background-light py-2 w-full flex items-center justify-end ">
                     <ul className="max-md:text-sm max-sm:text-xs flex items-center justify-end gap-8 rgba(0,0,0,0.65) w-[90%] max-lg:w-[95%] mx-auto">
                         <li>About us</li>
