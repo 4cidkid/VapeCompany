@@ -8,13 +8,10 @@
     transform: scale(1.1);
 }
 .category p {
-    transition: color 0.2s ease-in-out;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.category:hover p {
     color: #fff;
 }
+
+
 
 .category> :last-child {
     transition: backdrop-filter 0.2s ease-in-out;
